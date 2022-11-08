@@ -124,7 +124,7 @@ resource "aws_ecs_task_definition" "main" {
     Environment = var.environment
   }
 }
-esource "aws_ecs_cluster" "main" {
+resource "aws_ecs_cluster" "main" {
   name = "${var.name}-cluster-${var.environment}"
   tags = {
     Name        = "${var.name}-cluster-${var.environment}"
