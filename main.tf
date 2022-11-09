@@ -8,11 +8,11 @@ terraform {
 backend "s3" {
 bucket  = "configfilebucket"
 key     = "testterraform.tfstate"
-region  = "ap-south-1"
+region  = "us-east-1"
 }
 }
 module "vpc" {
-source             = "./codedeploy_ecs_tf/vpc"
+source             = "./codedeploy_ecs_tf/modules/vpc"
 name               = var.name
 cidr               = var.cidr
 private_subnets    = var.private_subnets
@@ -21,7 +21,7 @@ availability_zones = var.availability_zones
 environment        = var.environment
 }
 module "security_groups" {
-source         = "./codedeploy_ecs_tf/security-groups"
+source         = "./codedeploy_ecs_tf/modules/sg"
 name           = var.name
 vpc_id         = module.vpc.id
 environment    = var.environment
@@ -29,7 +29,7 @@ container_port = var.container_port
 vpc_cidr       = module.vpc.cidr
 }
 module "alb" {
-source              = "./codedeploy_ecs_tf/alb"
+source              = "./codedeploy_ecs_tf/modules/alb"
 name                = var.name
 vpc_id              = module.vpc.id
 subnets             = module.vpc.public_subnets
@@ -39,7 +39,7 @@ alb_security_groups = [module.security_groups.alb]
 health_check_path   = var.health_check_path
 }
 module "ecs" {
-source                      = "./codedeploy_ecs_tf/ecs"
+source                      = "./codedeploy_ecs_tf/modules/ecs_codedeploy"
 name                        = var.name
 environment                 = var.environment
 region                      = var.aws-region

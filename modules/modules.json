@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"ecs","Source":"./codedeploy_ecs_tf/ecs_codedeploy","Dir":""},{"Key":"security_groups","Source":"./codedeploy_ecs_tf/sg","Dir":""},{"Key":"vpc","Source":"./codedeploy_ecs_tf/vpc","Dir":""},{"Key":"","Source":"","Dir":"."},{"Key":"alb","Source":"./codedeploy_ecs_tf/alb","Dir":""}]}
